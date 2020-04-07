@@ -22,7 +22,7 @@ rip:
 ## Usage
 
 ```html
-<a href="{$imageUrl|image}" alt="">
-  <img src="{$imageUrl|image:detail}" alt="">
+<a href="{$imageUrl|image}">
+    <img src="{$imageUrl|image:detail}" alt="">
 </a>
 ```
