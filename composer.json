@@ -1,6 +1,13 @@
 {
     "name": "adbros/remote-image-processor",
-    "description": "",
+    "description": "This package will help you to implement cloud services such as thumbor and more.",
+    "keywords": [
+        "nette",
+        "image",
+        "thumb",
+        "resize",
+        "thumbor"
+    ],
     "type": "library",
     "require": {
         "php": "^7.1",
