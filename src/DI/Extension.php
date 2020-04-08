@@ -27,9 +27,17 @@ class Extension extends CompilerExtension
 		$filtersService = $builder->addDefinition($this->prefix('filters'))
 			->setFactory(Filters::class, [$this->config['aliases']]);
 
-		$builder->getDefinitionByType(ILatteFactory::class)
-			->getResultDefinition()
-			->addSetup('addFilter', ['image', [$filtersService, 'processImage']]);
+		$definition = $builder->getDefinitionByType(ILatteFactory::class);
+
+		if (method_exists($definition, 'getResultDefinition')) {
+			$definition
+				->getResultDefinition()
+				->addSetup('addFilter', ['image', [$filtersService, 'processImage']]);
+		} else {
+			$definition
+				->addSetup('addFilter', ['image', [$filtersService, 'processImage']]);
+		}
+
 	}
 
 }
