@@ -12,9 +12,7 @@ extensions:
     rip: Adbros\RemoteImageProcessor\DI\Extension
 
 rip:
-    service:
-        name: Adbros\RemoteImageProcessor\Services\ThumborService
-        args: ['https://thumbor.url']
+    service: Adbros\RemoteImageProcessor\Services\ThumborService('https://thumbor.url', 'securityKey')
     aliases:
         detail: '400x255'
 ```

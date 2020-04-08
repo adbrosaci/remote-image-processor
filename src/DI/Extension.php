@@ -2,7 +2,6 @@
 
 namespace Adbros\RemoteImageProcessor\DI;
 
-use Adbros\RemoteImageProcessor\Services\ThumborService;
 use Adbros\RemoteImageProcessor\Template\Filters;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
@@ -12,10 +11,7 @@ class Extension extends CompilerExtension
 
 	/** @var mixed[] */
 	private $defaults = [
-		'service' => [
-			'name' => ThumborService::class,
-			'args' => [],
-		],
+		'service' => null,
 		'aliases' => [],
 	];
 
@@ -26,7 +22,7 @@ class Extension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		$builder->addDefinition($this->prefix('service'))
-			->setFactory($this->config['service']['name'], $this->config['service']['args']);
+			->setFactory($this->config['service']);
 
 		$filtersService = $builder->addDefinition($this->prefix('filters'))
 			->setFactory(Filters::class, [$this->config['aliases']]);
