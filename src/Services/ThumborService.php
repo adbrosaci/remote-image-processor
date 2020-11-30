@@ -2,9 +2,10 @@
 
 namespace Adbros\RemoteImageProcessor\Services;
 
+use InvalidArgumentException;
 use Nette\Utils\Strings;
 
-class ThumborService implements ServiceInterface
+class ThumborService extends BaseService implements IService
 {
 
 	/** @var string */
@@ -19,9 +20,14 @@ class ThumborService implements ServiceInterface
 		$this->securityKey = $securityKey;
 	}
 
-	public function processImage(string $imageUrl, ?string $modifier = null): string
+
+	public function processImage(string $imageUrl, ?string $alias = null): string
 	{
-		$path = ($modifier !== null ? $modifier . '/' : '') . Strings::replace($imageUrl, '~https?://~');
+		if ($alias !== null && !isset($this->getAliases()[$alias])) {
+			throw new InvalidArgumentException('Invalid image alias.');
+		}
+
+		$path = ($alias !== null ? $this->getAliases()[$alias] . '/' : '') . Strings::replace($imageUrl, '~https?://~');
 
 		$signature = $this->securityKey !== null
 			? $this->sign($path)
@@ -36,7 +42,8 @@ class ThumborService implements ServiceInterface
 
 		return strtr(
 			base64_encode($signature),
-			'/+', '_-'
+			'/+',
+			'_-'
 		);
 	}
 

@@ -1,2 +1,5 @@
 composer.lock
+coverage.xml
+tests/tmp
+tests/cases/**/output
 vendor

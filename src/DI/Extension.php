@@ -15,17 +15,18 @@ class Extension extends CompilerExtension
 		'aliases' => [],
 	];
 
-	public function loadConfiguration()
+	public function loadConfiguration(): void
 	{
 		$this->validateConfig($this->defaults);
 
 		$builder = $this->getContainerBuilder();
 
 		$builder->addDefinition($this->prefix('service'))
-			->setFactory($this->config['service']);
+			->setFactory($this->config['service'])
+			->addSetup('setAliases', [$this->config['aliases']]);
 
 		$filtersService = $builder->addDefinition($this->prefix('filters'))
-			->setFactory(Filters::class, [$this->config['aliases']]);
+			->setFactory(Filters::class);
 
 		$definition = $builder->getDefinitionByType(ILatteFactory::class);
 
@@ -37,7 +38,6 @@ class Extension extends CompilerExtension
 			$definition
 				->addSetup('addFilter', ['image', [$filtersService, 'processImage']]);
 		}
-
 	}
 
 }

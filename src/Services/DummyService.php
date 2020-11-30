@@ -2,10 +2,10 @@
 
 namespace Adbros\RemoteImageProcessor\Services;
 
-class DummyService implements ServiceInterface
+class DummyService extends BaseService implements IService
 {
 
-	public function processImage(string $imageUrl, ?string $modifier = null): string
+	public function processImage(string $imageUrl, ?string $alias = null): string
 	{
 		return $imageUrl;
 	}
