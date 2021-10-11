@@ -11,15 +11,15 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "^7.1",
+        "php": "^7.1 || ^8.0",
         "nette/utils": "^2.4 || ^3.0"
     },
     "require-dev": {
         "latte/latte": "^2.4",
         "nette/application": "^2.4 || ^3.0",
         "nette/di": "^2.4 || ^3.0",
-        "ninjify/coding-standard": "^0.10.0",
-        "ninjify/nunjuck": "^0.3.0"
+        "ninjify/coding-standard": "^0.11",
+        "ninjify/nunjuck": "^0.3"
     },
     "autoload": {
         "psr-4": {
