@@ -10,7 +10,7 @@ class Extension extends CompilerExtension
 {
 
 	/** @var mixed[] */
-	private $defaults = [
+	private array $defaults = [
 		'service' => null,
 		'aliases' => [],
 	];
@@ -35,6 +35,7 @@ class Extension extends CompilerExtension
 				->getResultDefinition()
 				->addSetup('addFilter', ['image', [$filtersService, 'processImage']]);
 		} else {
+			/** @phpstan-ignore method.notFound */
 			$definition
 				->addSetup('addFilter', ['image', [$filtersService, 'processImage']]);
 		}

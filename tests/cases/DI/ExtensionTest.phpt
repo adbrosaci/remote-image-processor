@@ -3,6 +3,7 @@
 use Adbros\RemoteImageProcessor\DI\Extension;
 use Adbros\RemoteImageProcessor\Services\DummyService;
 use Adbros\RemoteImageProcessor\Services\IService;
+use Contributte\Tester\Environment;
 use Nette\Bridges\ApplicationDI\LatteExtension;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
@@ -11,10 +12,10 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
-	$loader = new ContainerLoader(TEMP_DIR, true);
+test('Extension', function (): void {
+	$loader = new ContainerLoader(Environment::getTmpDir(), true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR . '/cache/latte'));
+		$compiler->addExtension('latte', new LatteExtension(Environment::getTmpDir() . '/cache/latte'));
 
 		$compiler->addExtension('rip', new Extension())
 			->addConfig([

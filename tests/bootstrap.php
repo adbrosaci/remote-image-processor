@@ -2,16 +2,22 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ninjify\Nunjuck\Environment;
+use Contributte\Tester\Environment;
 
 // Configure Nette\Tester
 Environment::setupTester();
 
-// Configure timezone (Europe/Prague by default)
-Environment::setupTimezone();
+// Configure timezone
+Environment::setupTimezone('Europe/Prague');
 
-// Configure many constants
-Environment::setupVariables(__DIR__);
+// Create folders (/tmp)
+Environment::setupFolders(__DIR__);
 
 // Fill global variables
 Environment::setupGlobalVariables();
+
+// Configure sessions save path
+Environment::setupSessions(__DIR__);
+
+// Allow global test() function
+Environment::setupFunctions();

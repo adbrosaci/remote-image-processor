@@ -6,7 +6,7 @@ abstract class BaseService
 {
 
 	/** @var string[] */
-	protected $aliases;
+	protected array $aliases;
 
 	/**
 	 * @return string[]

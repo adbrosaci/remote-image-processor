@@ -11,15 +11,19 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "^7.1 || ^8.0",
-        "nette/utils": "^2.4 || ^3.0"
+        "php": "^8.1",
+        "nette/utils": "^2.4 || ^3.0 || ^4.0"
     },
     "require-dev": {
-        "latte/latte": "^2.4",
+        "contributte/qa": "^0.3",
+        "contributte/tester": "^0.3.0",
+        "latte/latte": "^2.4 || ^3.0",
         "nette/application": "^2.4 || ^3.0",
-        "nette/di": "^2.4 || ^3.0",
-        "ninjify/coding-standard": "^0.11",
-        "ninjify/nunjuck": "^0.3"
+        "nette/di": "^2.4.6 || ^3.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-nette": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -27,11 +31,16 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
     },
     "scripts": {
         "cs": "phpcs --standard=ruleset.xml",
         "cs-fix": "phpcbf --standard=ruleset.xml",
+		"phpstan": "phpstan analyse -c phpstan.neon",
 		"test": "tester -C tests",
 		"coverage": "tester -p phpdbg -C --coverage coverage.xml --coverage-src src"
 	}

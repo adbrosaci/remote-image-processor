@@ -7,8 +7,7 @@ use Adbros\RemoteImageProcessor\Services\IService;
 class Filters
 {
 
-	/** @var IService */
-	protected $service;
+	protected IService $service;
 
 	public function __construct(IService $service)
 	{

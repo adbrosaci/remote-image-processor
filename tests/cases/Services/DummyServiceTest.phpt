@@ -5,7 +5,7 @@ use Tester\Assert;
 
 require __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+test('DummyService', function (): void {
 	$service = new DummyService();
 
 	$service->setAliases([

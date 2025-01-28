@@ -8,18 +8,15 @@ use Nette\Utils\Strings;
 class ThumborService extends BaseService implements IService
 {
 
-	/** @var string */
-	protected $thumborUrl;
+	protected string $thumborUrl;
 
-	/** @var string */
-	protected $securityKey;
+	protected ?string $securityKey;
 
 	public function __construct(string $thumborUrl, ?string $securityKey = null)
 	{
 		$this->thumborUrl = $thumborUrl;
 		$this->securityKey = $securityKey;
 	}
-
 
 	public function processImage(string $imageUrl, ?string $alias = null): string
 	{
@@ -38,7 +35,7 @@ class ThumborService extends BaseService implements IService
 
 	protected function sign(string $path): string
 	{
-		$signature = hash_hmac('sha1', $path, $this->securityKey, true);
+		$signature = hash_hmac('sha1', $path, $this->securityKey ?? '', true);
 
 		return strtr(
 			base64_encode($signature),
